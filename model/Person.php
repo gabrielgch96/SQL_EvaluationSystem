@@ -5,8 +5,8 @@ require_once("DB.php");
  * Put here the methods like getBySomeCriteriaSEarch */
 class Person {
 
-   /** Get member data for id $member_id
-    * @param int $member_id id of the member to be retrieved
+   /** Get member data for id $person_id
+    * @param int $person_id id of the person to be retrieved
     * @return associative_array table row
     */
    public static function get($person_id) {
