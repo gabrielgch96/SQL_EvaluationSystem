@@ -1,8 +1,7 @@
 <?php
 require_once("DB.php");
 
-/** Access to the sql_question table.
- * Put here the methods like getBySomeCriteriaSEarch */
+/** Access to the sql_question table.*/
 class SQLQuestion {
 
     /** Get question data for id $question_id
