@@ -539,3 +539,22 @@ END$$
 
 
 CALL sql_skills_reset()$$
+
+/* Create a user to be used in PHP for the connection,
+ * and give him all grants on the DB.
+ */
+-- Delete the user ...
+DELETE FROM mysql.user WHERE user='skillsEpita2020' $$
+-- and his grants
+DELETE FROM mysql.db WHERE user='skillsEpita2020' $$
+DELETE FROM mysql.tables_priv WHERE user='skillsEpita2020' $$
+FLUSH PRIVILEGES $$
+-- Create him
+CREATE USER skillsEpita2020@localhost IDENTIFIED by 'passwordEpita2020' $$
+-- Grant him rights on the DB ...
+GRANT ALL ON sql_skills_fall2019.* TO skillsEpita2020@localhost $$
+-- Grant select privileges on target dbs
+--GRANT SELECT ON banque TO skillsEpita2020@localhost $$
+--GRANT SELECT ON avions TO skillsEpita2020@localhost $$
+-- and on the stored procedure
+GRANT SELECT ON mysql.proc TO skillsEpita2020@localhost $$
