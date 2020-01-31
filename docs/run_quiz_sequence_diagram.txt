@@ -1,0 +1,22 @@
+@startuml
+participant Browser
+participant View
+
+Browser -> Controller: GET list_questions.php
+Controller -> Model: Question::select()
+Model -> DBMS: SELECT * FROM question
+
+alt success
+DBMS -> Model: get list questions
+Model -> Controller: "Questions"
+Controller -> View: list_questions_v.php
+View -> Browser: "Location: questions"
+Browser -> Controller: GET questions
+
+else insertion error
+DBMS -> Model: MySql error code\nthrough an exception
+Model -> Controller: PDOException
+Controller -> View: list_question_v.php\nwith the error msg
+View -> Browser: form with an error message
+end
+@enduml

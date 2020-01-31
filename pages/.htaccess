@@ -1,0 +1,16 @@
+# Send all responses in utf-8
+AddDefaultCharset utf-8
+# Allow directory browsing. USEFUL ONLY DURING DEVELOPMENT
+Options +Indexes
+
+# Use url rewriting. BE SURE YOU ENABLE rewrite_module in Apache 
+RewriteEngine on
+# Base directory for rewritng: URL OF YOUR POROJECT
+# RewriteBase /epita/SQL_EVALUATIONSYSTEM/pages/
+# Rewriting rules (use regular expressions)
+RewriteRule ^sign_in$ login.php
+RewriteRule ^sign_out$ login.php?action=disconnect
+RewriteRule ^questions$ questions.php
+RewriteRule ^question-(\d+)$ question.php?id=$1
+RewriteRule ^quizs$ quizs.php
+RewriteRule ^quiz-(\d+)$ quiz.php?id=$1

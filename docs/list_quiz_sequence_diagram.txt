@@ -1,0 +1,22 @@
+@startuml
+participant Browser
+participant View
+
+Browser -> Controller: GET quizList.php
+Controller -> Model: doGetQuizList()
+Model -> DBMS: SELECT * FROM quiz
+
+alt success
+DBMS -> Model: GET quiz list
+Model -> Controller: "QuizList"
+Controller -> View: quizList_v.php
+View -> Browser: "Location: quizList"
+Browser -> Controller: GET Quizs
+
+else insertion error
+DBMS -> Model: MySql error code\nthrough an exception
+Model -> Controller: PDOException
+Controller -> View: quizList_v.php\nwith the error msg
+View -> Browser: form with an error message
+end
+@enduml
