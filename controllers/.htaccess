@@ -1,0 +1,11 @@
+# Send all responses in utf-8
+AddDefaultCharset utf-8
+# Allow directory browsing. USEFUL ONLY DURING DEVELOPMENT
+Options +Indexes
+
+# Use url rewriting. BE SURE YOU ENABLE rewrite_module in Apache 
+RewriteEngine on
+# Base directory for rewritng: URL OF YOUR POROJECT
+RewriteBase /web-exercices/auction/pages/
+# Rewriting rules (use regular expressions)
+#RewriteRule ^sign_in$ login.php
