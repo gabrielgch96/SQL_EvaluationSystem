@@ -1,8 +1,8 @@
 <?php
 
-require_once("../model/QuizDB.php");
+require_once("../model/Quiz_DB.php");
 
-QuizDB::searchAll();
+Quiz_DB::searchAll();
 
 
 
