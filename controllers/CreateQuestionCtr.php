@@ -7,17 +7,13 @@ switch ($_SERVER["REQUEST_METHOD"]) {
     case "GET":
         $bs = array();
         require_once("../model/Quiz_DB.php");
-        $bs = Quiz_DB::searchAll();
-        echo'<select form="questionForm">';
-            foreach($bs as $row){
-                //echo '<option value="'.$row["db_name"].'>'.$row["db_name"].'</option>';
-                //echo '<option value="volvo">Volvo</option>';
-           }
-        echo "</select>";
+        require_once("../model/Theme.php");
+        $dbs = Quiz_DB::searchAll();
+        $themes = Theme::getAll();
         require_once("../views/createQuestionView.php");
         break;
     case "POST":
-        do_post();
+        echo "Got it";
         break;
     default:
         die("Method not implemented");
