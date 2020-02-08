@@ -63,5 +63,20 @@ class Quiz_DB{
         return $results;
     }
 
+    /** run an sql in a target database
+    * @param $sql_test SELECT to run
+    * @param $db_name target database 
+    * @return associative_array table row
+    */
+    public static function testSQL($sql_test, $db_name){
+        $results = null;
+        try{
+            $results = DB::getAll($sql_test,array(), $db_name);
+        }catch(PDOException $e){
+            return $e->getMessage();
+        }
+        return $results;
+    }
+
 }
 ?>
