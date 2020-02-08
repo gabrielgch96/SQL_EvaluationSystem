@@ -1,5 +1,5 @@
 <?php
-//data: $bs
+//data: $dbs
 ?>
 <!DOCTYPE html>
 <html>
@@ -8,12 +8,12 @@
 <body>
     <? require_once("header.php"); ?>
     <h4>Create Question</h4>
-    <form id="questionForm">
+    <form id="questionForm" method="post" action="../controllers/CreateQuestionCtr.php">
         <label>Db Name: </label>
         <select form="questionForm">
         <?php
-            foreach($bs as $row){
-                echo '<option value="'.$row["db_name"].'>'.$row["db_name"].'</option>';
+            foreach($dbs as $row){
+                echo '<option value="'.$row["db_name"].'">'.$row["db_name"].'</option>';
            }
         ?>
         </select>
@@ -26,7 +26,13 @@
         <label>Public?</label>
         <input type="checkbox">
         <label>Theme</label>
-        
+        <select form="questionForm">
+        <?php
+            foreach($themes as $row){
+                echo '<option value="'.$row["theme_id"].'">'.$row["label"].'</option>';
+           }
+        ?>
+        </select>
         <input type="submit">
     </form>
 </body>
