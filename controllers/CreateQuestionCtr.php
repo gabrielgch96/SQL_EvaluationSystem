@@ -18,7 +18,6 @@ switch ($_SERVER["REQUEST_METHOD"]) {
             $results = testSQL($sql, $db_name);
             if($results["PASS"])
                 $results["RESULT"] = formatToCSV($results["RESULT"]);
-
             echo json_encode(str_replace("\n","<br>",$results["RESULT"]),JSON_UNESCAPED_UNICODE);
         }
         else{
@@ -28,7 +27,7 @@ switch ($_SERVER["REQUEST_METHOD"]) {
                 "correct_answer" => filter_input(INPUT_POST, "correct_answer", FILTER_SANITIZE_STRING),
                 "is_public" => filter_input(INPUT_POST, "is_public", FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE),
                 "theme_id" => filter_input(INPUT_POST, "theme_id", FILTER_VALIDATE_INT),
-                "author_id" => $_SESSION["uid"]
+                "author_id" => $_SESSION["user"]["person_id"]
             );
             $test = testSQL($question["correct_answer"], $question["db_name"]);
             if(!$test["PASS"]){
@@ -38,7 +37,7 @@ switch ($_SERVER["REQUEST_METHOD"]) {
                 require_once("../model/SQLQuestion.php");
                 $question["correct_result"] = formatToCSV($test["RESULT"]);
                 //insert to database
-                //SQLQuestion::insert($question);
+                SQLQuestion::insert($question);
                 $url = "./ListQuestions.php";
                 header("Location: $url");
             }
@@ -55,7 +54,6 @@ switch ($_SERVER["REQUEST_METHOD"]) {
     */
 function testSQL($sql_test, $db_name){
     require_once("../model/Quiz_DB.php");
-    
     $results = Quiz_DB::testSQL($sql_test, $db_name);
     $ans = array("PASS" => is_array($results), 
         "RESULT"=> $results);
