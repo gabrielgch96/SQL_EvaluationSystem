@@ -6,7 +6,7 @@
 session_start();
 if (filter_input(INPUT_SERVER, "REQUEST_METHOD") != "POST") {
    $message = "Method not implemented";
-   require_once("../view/message.php");
+   require_once("../views/message.php");
    die();
 }
 
@@ -20,7 +20,7 @@ if ($action == "disconnect") {
    $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
    if (empty($login) || empty($password)) {
       $errors["login_form"] = "fields must be filled";
-      require_once("../view/index_view.php");
+      require_once("../views/index_view.php");
    } else {
       require_once "../model/Person.php";
       $user = Person::getByLoginPassword($login, $password);
@@ -32,7 +32,7 @@ if ($action == "disconnect") {
          header("Location: $url");
       } else {
          $errors["login_form"] = "Invalid password or user unknow";
-         require_once("../view/index_view.php");
+         require_once("../views/index_view.php");
       }
    }
 }

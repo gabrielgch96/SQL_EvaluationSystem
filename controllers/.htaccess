@@ -11,3 +11,5 @@ RewriteBase /SQL_EvaluationSystem/controllers/
 RewriteRule ^createQuestion$ createQuestionCtr.php
 RewriteRule ^sign_in$ login.php
 RewriteRule ^sign_out$ login.php?action=disconnect
+RewriteRule ^questions$ ListQuestions.php
+RewriteRule ^quizzes$ ListQuizzes.php

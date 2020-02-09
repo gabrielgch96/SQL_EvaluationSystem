@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <link rel="stylesheet" type="text/css" href="static/evaluationSystem.css"/>
-      <title>PHPDemo</title>
+      <title>Evaluation Manager</title>
    </head>
    <body>
       <?php
@@ -71,6 +70,6 @@
       displayed in a popup accessible from the menu.</p>
       <p>The sign up has not been implemented, as this is an exercise in your
       project :-). However the sequence diagram is in the 
-      <a href="../doc/">doc</a> directory.</p>
+      <a href="../docs/">doc</a> directory.</p>
       <p>The member page has not been implemented. This may be done very easily
       by adapting the product page, which has a similar sequence (refer to the diagram).</p>

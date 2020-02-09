@@ -13,9 +13,9 @@ function display_error($key, $tag = "span") {
 ?>
 <nav>
    <a href="./">Home</a>
-   <a href="products">Questions</a>
-   <a href="members">Quizs</a>
-   <a href="../doc/">Documentation</a>
+   <a href="questions">Questions</a>
+   <a href="quizzes">Quizzes</a>
+   <a href="../docs/">Documentation</a>
    <?php
    if (isset($_SESSION["user"])) {
       // Connected => may disconnect
