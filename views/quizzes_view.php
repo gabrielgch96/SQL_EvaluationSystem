@@ -12,7 +12,7 @@
       <?php
       // Header shared by all pages
       require_once("header.php");
-      if (count($quizs) == 0) {
+      if (count($quizzes) == 0) {
          ?>
          <h1>No quiz found</h1>
          <p>Examples</p>
