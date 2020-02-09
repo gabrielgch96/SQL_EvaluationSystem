@@ -1,0 +1,18 @@
+# Send all responses in utf-8
+AddDefaultCharset utf-8
+# Allow directory browsing. USEFUL ONLY DURING DEVELOPMENT
+Options +Indexes
+
+# Use url rewriting. BE SURE YOU ENABLE rewrite_module in Apache 
+RewriteEngine on
+# Base directory for rewritng: URL OF YOUR POROJECT
+RewriteBase /SQL_EvaluationSystem/controllers/
+# Rewriting rules (use regular expressions)
+RewriteRule ^createQuestion$ CreateQuestionCtr.php
+RewriteRule ^createQuiz$ CreateQuizCtr.php
+RewriteRule ^sign_in$ login.php
+RewriteRule ^sign_out$ login.php?action=disconnect
+RewriteRule ^questions$ ListQuestions.php
+RewriteRule ^question-(\d+) QuestionCtr.php?id=$1
+RewriteRule ^quizzes$ ListQuizzes.php
+RewriteRule ^quiz-(\d+) QuizCtr.php?id=$1
