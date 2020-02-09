@@ -59,7 +59,6 @@ class Quiz_DB{
     {
         $sql = "SELECT * FROM quiz_db WHERE 1";
         $results = DB::getAll($sql, array());
-        print_r($results);
         return $results;
     }
 
