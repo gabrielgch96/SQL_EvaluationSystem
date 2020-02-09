@@ -26,7 +26,7 @@ class Person {
       // in the WHERE clause
       $sql = "SELECT *
             FROM person
-            WHERE email = :email AND pwd = :password";
+            WHERE email = :email AND pwd = :pwd";
       $stmt = $db->prepare($sql);
       $stmt->bindValue(":email", $email);
       $stmt->bindValue(":pwd", $password);
