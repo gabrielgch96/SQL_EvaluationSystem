@@ -20,7 +20,7 @@ if (!isset($question)) {
 </head>
 
 <body>
-    <? require_once("header.php"); ?>
+    <?php require_once("header.php"); ?>
     <h4>Create Question</h4>
     <form id="questionForm" method="post" action="../controllers/CreateQuestionCtr.php">
         <label>Db Name: </label>
