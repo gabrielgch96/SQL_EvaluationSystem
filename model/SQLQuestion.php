@@ -28,9 +28,7 @@ class SQLQuestion {
     * @param int $author_id identifier from user
     * @return int id of inserted question
     */
-    public static function insert($db_name, $question_text,
-        $correct_answer, $correct_result, $is_public, 
-        $theme_id, $author_id){
+    public static function insert($question){
         $sql = "INSERT INTO sql_question(
                 db_name, question_text, correct_answer,
                 correct_result, is_public, theme_id, 
@@ -39,13 +37,13 @@ class SQLQuestion {
                 :correct_result, :is_public, :theme_id, 
                 :author_id, :created_at)
             ";
-        $data = array(":db_name"=>$db_name,
-            ":question_text"=>$question_text,
-            ":correct_answer"=>$correct_answer,
-            ":correct_result"=>$correct_result,
-            ":is_public"=>$is_public,
-            ":theme_id"=>$theme_id,
-            ":author_id"=>$author_id,
+        $data = array(":db_name"=>$question["db_name"],
+            ":question_text"=>$question["question_text"],
+            ":correct_answer"=>$question["correct_answer"],
+            ":correct_result"=>$question["correct_result"],
+            ":is_public"=>$question["is_public"],
+            ":theme_id"=>$question["theme_id"],
+            ":author_id"=>$question["author_id"],
             ":created_at"=>date("Y-m-d h:i:s"));
 
         $db = DB::getConnection();
