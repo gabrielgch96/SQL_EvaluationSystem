@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <link rel="stylesheet" type="text/css" href="static/evalutationSystem.css"/>
       <title>Search results</title>
    </head>
    <body>
@@ -15,6 +14,7 @@
       if (count($quizzes) == 0) {
          ?>
          <h1>No quiz found</h1>
+         <a href="createQuiz"><button>Create Quiz</button></a>
          <p>Examples</p>
          <ul>
             <li><a href="<?= $_SERVER['PHP_SELF'] ?>?category_id=1&max_current_price=100&deadline=2018"><?= $_SERVER['PHP_SELF'] ?>?category_id=1&max_current_price=100&deadline=2018</a></li>
@@ -23,6 +23,7 @@
       } else {
          ?>
          <h1>Quiz List Results</h1>
+         <a href="createQuiz"><button>Create Quiz</button></a>
          <table>
             <tr>
                <th>Quiz ID</th>
@@ -35,7 +36,7 @@
             foreach ($quizzes as $quiz) {
                ?>
                <tr>
-                  <td><a href="quiz-<?= $quiz['question_id'] ?>"><?= $quiz["quiz_id"] ?></a></td>
+                  <td><a href="quiz-<?= $quiz['quiz_id'] ?>"><?= $quiz["quiz_id"] ?></a></td>
                   <td><?= $quiz["title"] ?></td>
                   <td><?= $quiz["is_public"] ?></td>
                   <td><?= $quiz["author_id"]?></td>

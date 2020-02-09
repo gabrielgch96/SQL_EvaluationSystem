@@ -15,6 +15,7 @@
       if (count($questions) == 0) {
          ?>
          <h1>No questions found</h1>
+         <a href="createQuestion"><button>Create Question</button></a>
          <p>Examples</p>
          <ul>
             <li><a href="<?= $_SERVER['PHP_SELF'] ?>?question_id=1"><?= $_SERVER['PHP_SELF'] ?>?question_id=1</a></li>
@@ -23,6 +24,7 @@
       } else {
          ?>
          <h1>Results</h1>
+         <a href="createQuestion"><button>Create Question</button></a>
          <table>
             <tr>
                <th>Question ID</th>
