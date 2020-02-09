@@ -9,27 +9,39 @@ $dbs = Quiz_DB::searchAll();
 $themes = Theme::getAll();
 switch ($_SERVER["REQUEST_METHOD"]) {
     case "GET":
-        $bs = array();
         require_once("../views/createQuestionView.php");
         break;
     case "POST":
-        $question = array(
-            "db_name" => filter_input(INPUT_POST, "db_name", FILTER_SANITIZE_STRING),
-            "question_text" => filter_input(INPUT_POST, "question_text", FILTER_SANITIZE_STRING),
-            "correct_answer" => filter_input(INPUT_POST, "correct_answer", FILTER_SANITIZE_STRING),
-            //"correct_result" => filter_input(INPUT_POST, "correct_result", FILTER_SANITIZE_STRING),
-            "is_public" => filter_input(INPUT_POST, "is_public", FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE),
-            "theme_id" => filter_input(INPUT_POST, "theme_id", FILTER_VALIDATE_INT)
-        );
-        $test = testSQL($question["correct_answer"], $question["db_name"]);
-        require_once("../views/createQuestionView.php");
-        if($test["PASS"]){
-            //implode results
-            //insert to database
-            //redirect 
+        if(isset($_POST["TEST_SQL"])){
+            $sql = filter_input(INPUT_POST, "correct_answer", FILTER_SANITIZE_STRING);
+            $db_name = filter_input(INPUT_POST, "db_name", FILTER_SANITIZE_STRING);
+            $results = testSQL($sql, $db_name);
+            if($results["PASS"])
+                $results["RESULT"] = formatToCSV($results["RESULT"]);
+
+            echo json_encode(str_replace("\n","<br>",$results["RESULT"]),JSON_UNESCAPED_UNICODE);
         }
         else{
-            //return form with values
+            $question = array(
+                "db_name" => filter_input(INPUT_POST, "db_name", FILTER_SANITIZE_STRING),
+                "question_text" => filter_input(INPUT_POST, "question_text", FILTER_SANITIZE_STRING),
+                "correct_answer" => filter_input(INPUT_POST, "correct_answer", FILTER_SANITIZE_STRING),
+                "is_public" => filter_input(INPUT_POST, "is_public", FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE),
+                "theme_id" => filter_input(INPUT_POST, "theme_id", FILTER_VALIDATE_INT),
+                "author_id" => $_SESSION["uid"]
+            );
+            $test = testSQL($question["correct_answer"], $question["db_name"]);
+            if(!$test["PASS"]){
+                require_once("../views/createQuestionView.php");
+            }
+            else{
+                require_once("../model/SQLQuestion.php");
+                $question["correct_result"] = formatToCSV($test["RESULT"]);
+                //insert to database
+                //SQLQuestion::insert($question);
+                $url = "./ListQuestions.php";
+                header("Location: $url");
+            }
         }
         break;
     default:
@@ -50,4 +62,13 @@ function testSQL($sql_test, $db_name){
     return $ans;
 }
 
-?>
+/* formats data to store and display" */
+function formatToCSV($results){
+    $formatted = array();
+    if(count($results) != 0){
+        foreach($results as $row){
+            $formatted[] = implode(";", array_values($row));
+        }
+    }
+    return implode("\n", $formatted);
+}
