@@ -8,7 +8,8 @@ RewriteEngine on
 # Base directory for rewritng: URL OF YOUR POROJECT
 RewriteBase /SQL_EvaluationSystem/controllers/
 # Rewriting rules (use regular expressions)
-RewriteRule ^createQuestion$ createQuestionCtr.php
+RewriteRule ^createQuestion$ CreateQuestionCtr.php
+RewriteRule ^createQuiz$ CreateQuizCtr.php
 RewriteRule ^sign_in$ login.php
 RewriteRule ^sign_out$ login.php?action=disconnect
 RewriteRule ^questions$ ListQuestions.php
