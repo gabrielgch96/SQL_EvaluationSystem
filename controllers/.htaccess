@@ -6,6 +6,6 @@ Options +Indexes
 # Use url rewriting. BE SURE YOU ENABLE rewrite_module in Apache 
 RewriteEngine on
 # Base directory for rewritng: URL OF YOUR POROJECT
-RewriteBase /web-exercices/auction/pages/
+RewriteBase /SQL_EvaluationSystem/controllers/
 # Rewriting rules (use regular expressions)
-#RewriteRule ^sign_in$ login.php
+RewriteRule ^createQuestion$ createQuestionCtr.php
