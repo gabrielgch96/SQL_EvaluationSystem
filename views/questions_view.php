@@ -14,10 +14,10 @@
       require_once("header.php");
       if (count($questions) == 0) {
          ?>
-         <h1>No question found</h1>
+         <h1>No questions found</h1>
          <p>Examples</p>
          <ul>
-            <li><a href="<?= $_SERVER['PHP_SELF'] ?>?question_id=1><?= $_SERVER['PHP_SELF'] ?>?question_id=1</a></li>
+            <li><a href="<?= $_SERVER['PHP_SELF'] ?>?question_id=1"><?= $_SERVER['PHP_SELF'] ?>?question_id=1</a></li>
          </ul>
          <?php
       } else {
@@ -35,16 +35,17 @@
                <th>Created date</th>
             </tr>
             <?php
-            foreach ($question as $questions) {
+            foreach ($questions as $question) {
                ?>
                <tr>
-                  <td><a href="member-<?= $question['question_id'] ?>"><?= $question["question_id"] ?></a></td>
+                  <td><a href="question-<?= $question['question_id'] ?>"><?= $question["question_id"] ?></a></td>
                   <td><?= $question["question_text"] ?></td>
                   <td><?= $question["correct_answer"] ?></td>
+                  <td><?= $question["correct_result"]?></td>
                   <td><?= $question["is_public"] ?></td>
                   <td><?= $question["theme_id"] ?></td>
                   <td><?= $question["author_id"] ?></td>
-                  <td><?= $question["create_at"] ?></td>
+                  <td><?= $question["created_at"] ?></td>
                </tr>
                <?php
             }

@@ -118,7 +118,7 @@ class SQLQuestion {
         else
             $sql .= "1";
         
-        $results = DB::getAll($sql, $params);
+        return DB::getAll($sql, $params);
     }
 
 }

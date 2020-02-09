@@ -23,7 +23,27 @@
       } else {
          ?>
          <h1>Quiz List Results</h1>
-        
+         <table>
+            <tr>
+               <th>Quiz ID</th>
+               <th>Title</th>
+               <th>Is_public</th>
+               <th>author_id</th>
+               <th>db_name</th>
+            </tr>
+            <?php
+            foreach ($quizzes as $quiz) {
+               ?>
+               <tr>
+                  <td><a href="quiz-<?= $quiz['question_id'] ?>"><?= $quiz["quiz_id"] ?></a></td>
+                  <td><?= $quiz["title"] ?></td>
+                  <td><?= $quiz["is_public"] ?></td>
+                  <td><?= $quiz["author_id"]?></td>
+                  <td><?= $quiz["db_name"] ?></td>
+               </tr>
+               <?php
+            }
+            ?>
          <?php
       }
       
