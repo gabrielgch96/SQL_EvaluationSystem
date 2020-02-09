@@ -9,3 +9,5 @@ RewriteEngine on
 RewriteBase /SQL_EvaluationSystem/controllers/
 # Rewriting rules (use regular expressions)
 RewriteRule ^createQuestion$ createQuestionCtr.php
+RewriteRule ^sign_in$ login.php
+RewriteRule ^sign_out$ login.php?action=disconnect
