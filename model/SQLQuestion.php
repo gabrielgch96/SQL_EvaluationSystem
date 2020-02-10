@@ -121,6 +121,21 @@ class SQLQuestion {
         return DB::getAll($sql, $params);
     }
 
+    public static function getWithDisplayFormat($db_name=null){
+        $sql ="SELECT s.question_id, s.question_text, s.correct_answer, s.correct_result, t.label, 
+            (SELECT COUNT(*) AS TIMES FROM sql_quiz_question f JOIN sql_question q
+            ON f.question_id=q.question_id WHERE q.question_id= s.question_id) AS quiz_occurrences 
+            FROM theme t JOIN sql_question s ON t.theme_id = s.theme_id ";
+        $params = array();
+        if(!is_null($db_name)){
+            $sql .= "WHERE s.db_name=:db ";
+            $params[":db"] = $db_name;
+        }
+        $sql .="ORDER BY s.question_id";
+        $results = DB::getAll($sql, $params);
+        return $results;
+    }
+
 }
 
 ?>
