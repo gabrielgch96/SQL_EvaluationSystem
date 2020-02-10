@@ -22,7 +22,7 @@ if (!isset($question)) {
 <body>
     <?php require_once("header.php"); ?>
     <h4>Create Question</h4>
-    <form id="questionForm" method="post" action="../controllers/CreateQuestionCtr.php">
+    <form id="questionForm" method="post" action="../controllers/createQuestion">
         <label>Db Name: </label>
         <select form="questionForm" name="db_name" id="db_name">
             <?php
@@ -37,7 +37,7 @@ if (!isset($question)) {
         <label>Correct Answer:</label>
         <input type="text" name="correct_answer" id="correct_answer" value="<?= $question["correct_answer"] ?>">
         <label>Public?</label>
-        <input type="checkbox" name="is_public" value="<?= $question["is_public"] ?>">
+        <input type="checkbox" name="is_public" <?= $question["is_public"]?"checked":"" ?>>
         <label>Theme</label>
         <select form="questionForm" name="theme_id">
             <?php
