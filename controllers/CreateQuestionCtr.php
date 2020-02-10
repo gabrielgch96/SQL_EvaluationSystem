@@ -37,9 +37,15 @@ switch ($_SERVER["REQUEST_METHOD"]) {
                 require_once("../model/SQLQuestion.php");
                 $question["correct_result"] = formatToCSV($test["RESULT"]);
                 //insert to database
-                SQLQuestion::insert($question);
-                $url = "./ListQuestions.php";
-                header("Location: $url");
+                if(($res = SQLQuestion::insert($question))){
+                    $url = "./ListQuestions.php";
+                    header("Location: $url");
+                }
+                else{
+                    $test["PASS"] = false;
+                    $test["RESULT"] = "An error occurred during insertion";  
+                    require_once("../views.createQuestionView");
+                }
             }
         }
         break;
