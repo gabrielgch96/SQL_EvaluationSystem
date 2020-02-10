@@ -26,7 +26,7 @@
    <?php
    } else {
    ?>
-      <h1>Results</h1>
+      <h1>Questions</h1>
       <a href="createQuestion"><button>Create Question</button></a>
       <form id="filter" method="POST" action="../controllers/questions">
          <select name="db_name">
@@ -52,7 +52,7 @@
             for ($i = 0; $i < count($questions); $i++) {
                //foreach ($questions as $question) {
             ?>
-               <tr id="<?=$questions[$i]['question_id'] ?>">
+               <tr class="item_row">
                   <td><a href="question-<?= $questions[$i]['question_id'] ?>"><?= $questions[$i]["question_id"] ?></a></td>
                   <td><?= $questions[$i]["question_text"] ?></td>
                   <td><?= $questions[$i]["label"] ?></td>
@@ -64,7 +64,8 @@
          </tbody>
       </table>
       <script type="text/javascript">
-      $("#justmovable").sortable();
+         $("#justmovable").sortable();
+
          function updateOrder(data) {
             $.ajax({
                url: ".php",
@@ -77,6 +78,14 @@
                }
             })
          }
+         $(".item_row").hover(
+            function() {
+               $(this).append($("<span> ***</span>"));
+            },
+            function() {
+               $(this).find("span").last().remove();
+            }
+         );
       </script>
    <?php
    }
