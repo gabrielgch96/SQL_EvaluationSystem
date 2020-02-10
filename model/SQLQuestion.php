@@ -102,9 +102,9 @@ class SQLQuestion {
         $params = array();
         if($only_private)
             $params[":is_public"] = $only_private;
-        if($database)
+        if(!is_null($database))
             $params[":db_name"] = $database;
-        if($theme_id)
+        if(!is_null($theme_id))
             $params[":theme_id"] = $theme_id;
 
         $sql = "SELECT * FROM sql_question WHERE ";
