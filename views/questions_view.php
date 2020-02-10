@@ -9,6 +9,11 @@
    <title>Search results</title>
    <script src="static/jquery-3.4.1.min.js"></script>
    <script src="static/jquery-ui.min.js"></script>
+   <style>
+      table {
+         border: 1px solid black;
+      }
+   </style>
 </head>
 
 <body>
@@ -58,34 +63,49 @@
                   <td><?= $questions[$i]["label"] ?></td>
                   <td><?= $questions[$i]["quiz_occurrences"] ?></td>
                </tr>
+               <tr>
+                  <td colspan="4">
+                     <div id="<?= $questions[$i]['question_id'] ?>" hidden>
+                        Correct Answer: <?= $questions[$i]["correct_answer"] ?>
+                        <hr>
+                        Correct Result: <?= $questions[$i]["correct_result"] ?>
+                     </div>
+                  </td>
+               </tr>
             <?php
             }
             ?>
          </tbody>
       </table>
       <script type="text/javascript">
-         $("#justmovable").sortable();
+         $(document).ready(function() {
+            $("#justmovable").sortable();
 
-         function updateOrder(data) {
-            $.ajax({
-               url: ".php",
-               type: 'post',
-               data: {
-                  position: data
-               },
-               success: function() {
-                  alert('your change successfully saved');
-               }
-            })
-         }
-         $(".item_row").hover(
-            function() {
-               $(this).append($("<span> ***</span>"));
-            },
-            function() {
-               $(this).find("span").last().remove();
+            function updateOrder(data) {
+               $.ajax({
+                  url: ".php",
+                  type: 'post',
+                  data: {
+                     position: data
+                  },
+                  success: function() {
+                     alert('your change successfully saved');
+                  }
+               })
             }
-         );
+            $(".item_row").hover(
+               function() {
+                  t = $(this).find("td:eq(0)").text();
+                  console.log($('#' + t).text());
+                  //$(this).append($("<span>"+t+"</span>"));
+                  $('#' + t).show();
+               },
+               function() {
+                  //$(this).find("span").last().remove();
+                  $('#' + t).hide();
+               }
+            );
+         });
       </script>
    <?php
    }
