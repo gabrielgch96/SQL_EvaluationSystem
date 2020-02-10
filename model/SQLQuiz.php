@@ -21,24 +21,29 @@ class SQLQuiz{
     * @param bool $is_public accessibility to users
     * @param int $author_id user id who creates the quiz
     * @param string $db_name target database
-    * @return associative_array table row
+    * @return int $id db generated uid
     */
-    public static function insert($title, $is_public,
-        $author_id, $db_name){
+    public static function insert($quiz){
         
         $params = array(
-            ":title" => $title,
-            ":is_public" => $is_public,
-            ":author_id" => $author_id,
-            ":db_name" => $db_name
+            ":title" => $quiz["title"],
+            ":is_public" => $quiz["is_public"],
+            ":author_id" => $quiz["author_id"],
+            ":db_name" => $quiz["db_name"]
         );
         $sql = "INSERT INTO sql_quiz(title, is_public,
             author_id, db_name) VALUES(
             :title, :is_public, :author_id,
             :db_name)";
-        
-        $results = DB::execute($sql, $params);
-        return $results;
+
+        $db = DB::getConnection();
+        $stmt = $db->prepare($sql);
+        foreach ($params as $key => $value) {
+            $stmt->bindValue($key, $value); // No specific typing
+          }
+        $stmt->execute();
+        $id = $db->lastInsertId();
+        return $id;
     }
 
     /** Delete quiz from sql_quiz
