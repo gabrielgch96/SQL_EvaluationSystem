@@ -6,8 +6,9 @@
 <html>
 
 <head>
-   <link rel="stylesheet" type="text/css" href="static/evalutationSystem.css" />
    <title>Search results</title>
+   <script src="static/jquery-3.4.1.min.js"></script>
+   <script src="static/jquery-ui.min.js"></script>
 </head>
 
 <body>
@@ -30,8 +31,9 @@
       <form id="filter" method="POST" action="../controllers/questions">
          <select name="db_name">
             <?php
+            echo '<option value="all">All</option>';
             foreach ($dbs as $row) {
-               $v = strcmp($question["db_name"], $row["db_name"]) == 0 ? "selected" : "";
+               $v = strcmp($db_name, $row["db_name"]) == 0 ? "selected" : "";
                echo '<option value="' . $row["db_name"] . '"' . $v . '>' . $row["db_name"] . '</option>';
             }
             ?>
@@ -45,18 +47,36 @@
             <th>Theme</th>
             <th>Quiz Occurrences</th>
          </tr>
-         <?php
-         foreach ($questions as $question) {
-         ?>
-            <tr>
-               <td><a href="question-<?= $question['question_id'] ?>"><?= $question["question_id"] ?></a></td>
-               <td><?= $question["question_text"] ?></td>
-               <td><?= $question["label"] ?></td>
-               <td><?= $question["quiz_occurrences"] ?></td>
-            </tr>
-         <?php
-         }
-         ?>
+         <tbody id="justmovable">
+            <?php
+            for ($i = 0; $i < count($questions); $i++) {
+               //foreach ($questions as $question) {
+            ?>
+               <tr id="<?=$questions[$i]['question_id'] ?>">
+                  <td><a href="question-<?= $questions[$i]['question_id'] ?>"><?= $questions[$i]["question_id"] ?></a></td>
+                  <td><?= $questions[$i]["question_text"] ?></td>
+                  <td><?= $questions[$i]["label"] ?></td>
+                  <td><?= $questions[$i]["quiz_occurrences"] ?></td>
+               </tr>
+            <?php
+            }
+            ?>
+         </tbody>
       </table>
+      <script type="text/javascript">
+      $("#justmovable").sortable();
+         function updateOrder(data) {
+            $.ajax({
+               url: ".php",
+               type: 'post',
+               data: {
+                  position: data
+               },
+               success: function() {
+                  alert('your change successfully saved');
+               }
+            })
+         }
+      </script>
    <?php
    }
