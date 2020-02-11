@@ -1,4 +1,5 @@
 <?php
+/* Controller for modification of question */
 session_start();
 require_once("../model/Theme.php");
 $themes = Theme::getAll();
@@ -62,9 +63,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             }
         }
     }
-} else {
+} else
     die("Method Not Implemented");
-}
 
 /** test user sql
     * @param $sql_test SELECT to run
