@@ -4,7 +4,7 @@ require_once("DB.php");
 class SQLQuiz{
 
     /** Get sql_quiz data for int $quiz_id
-    * @param int $db_name name of the database to be retrieved
+    * @param int $quiz_id uid of the quiz to be retrieved
     * @return associative_array table row
     */
     public static function get($quiz_id) {
@@ -13,6 +13,28 @@ class SQLQuiz{
                 WHERE quiz_id = :quiz_id";
         $data = array(":quiz_id"=>$quiz_id);
         $results = DB::getFirst($sql, $data);
+        return $results;
+    }
+
+    /** update sql_quiz data for int $quiz_id
+    * @param int $quiz_id uid of the quiz to be retrieved
+    * @param string $title name of the quiz
+    * @param bool $is_public accessibility to users
+    * @return int number of affected rows
+    */
+    public static function update($quiz_id, $title, $is_public){
+
+        $sql = "UPDATE sql_quiz SET title = :title,
+            is_public = :is_public 
+            WHERE quiz_id = :quiz_id";
+        
+        $data = array(
+            ":quiz_id" => $quiz_id,
+            ":title" => $title,
+            ":is_public" => $is_public
+        );
+
+        $results = DB::execute($sql,$data);
         return $results;
     }
 
