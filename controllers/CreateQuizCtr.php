@@ -13,7 +13,6 @@ switch($_SERVER["REQUEST_METHOD"]){
             "db_name" => filter_input(INPUT_POST, "db_name", FILTER_SANITIZE_STRING),
             "author_id" => $_SESSION["user"]["person_id"]
         );
-        var_dump($quiz);
         $result = SQLQuiz::insert($quiz);
         if($result){
             $url = "./quiz-$result";
