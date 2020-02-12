@@ -46,12 +46,14 @@
          <input type="submit" value="filter">
       </form>
       <table>
+         <thead>
          <tr>
             <th>Question ID</th>
             <th>Question Text</th>
             <th>Theme</th>
             <th>Quiz Occurrences</th>
          </tr>
+         </thead>
          <tbody id="justmovable">
             <?php
             for ($i = 0; $i < count($questions); $i++) {
