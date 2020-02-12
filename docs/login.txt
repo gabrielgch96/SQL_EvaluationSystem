@@ -1,0 +1,27 @@
+participant Browser
+participant View
+participant Controller
+participant Model
+participant Database
+
+Browser->Controller: GET login.php
+Controller->View: index_view.php
+View->Browser: two blanks to type in username and password
+Browser->Controller: POST login.php with username and password
+Controller->Model: Member::getByEmailPassword
+Model->Database: "select * from person where email = '$email' and password='$passowrd'"
+Database->Model: fetch the email and password
+Model->Controller:$user
+Controller->Controller:Store in the session
+
+opt matched:
+Controller->Browser: Location: index.php
+Browser->Controller: index.php
+end
+
+opt not matched:
+Controller->View: echo("error message")
+
+end
+
+
