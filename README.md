@@ -2,6 +2,10 @@
 
 Simple evaluation program that allows a **trainer** user to create quizzes and **student** user to practice and
 answer evaluations. Users who are not logged in can also practice.
+--------------------------------------------------------------------
+##### Design Decisions
+
+We created this program using the MVC model.
 
 --------------------------------------------------------------------
 ##### Configuration
