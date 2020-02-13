@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         // Recuperer le produit de id demande
         $person = Person::get($id);
         if($person != null){
+            //if($person["validated_at"] != null)
             Person::validate($person["person_id"]);
         }
     }

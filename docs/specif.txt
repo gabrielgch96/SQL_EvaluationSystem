@@ -1,0 +1,13 @@
+3. As a user, I can run a SQL quiz, in order to improve my skills
+	1. I must select a public quiz from a list
+	//2. I can see show the teachers query when pressing a button
+	3. I must write my query in a textbox
+	4. I can test my query and see the results
+	//5. If I display trainer's solution I can also see his/her results
+	6. Submit button is disabled if an answer has only blankspace
+
+4. As a student, I can run a managed SQL quiz, in order to follow my progress:
+	1. Same requirements as 3
+	2. My results are displayed after I finish an exam
+	3. I can see the exams I have answered as a list
+	4. The time taken, date and result is displayed next to the quiz

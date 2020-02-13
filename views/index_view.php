@@ -8,7 +8,7 @@
       // Header shared by all pages
       require_once("header.php");
       ?>
-      <h1>PHPDemo</h1>
+      <h1>Evaluation Manager</h1>
       <p>Demo of an application developed in PHP, with form and session management. 
          Some key points</p>
       <h2>Url rewriting</h2>
