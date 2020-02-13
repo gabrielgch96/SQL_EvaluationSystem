@@ -1,0 +1,28 @@
+
+title Create Quiz Sequence Diagram
+participant trainer
+participant View
+participant Controller
+participant Model
+participant DBMS
+participant TargetDBMS
+
+trainer -> Controller : GET CreateQuizCtr.php
+Controller -> View : createQuizView.php
+View -> trainer : Blanks and a checkbox for filling in the detail of the quiz.
+trainer -> Controller : POST information of the creating quiz.
+trainer -> Controller : POST createQuestion.php data[db_name,text, answer, is_public]
+
+alt Creation success
+Controller -> Model : SQLQuiz::insert($quiz)
+Model -> DBMS : $sql = "INSERT INTO sql_quiz(title, is_public, author_id, db_name) VALUES(:title, :is_public, :author_id,:db_name)";
+DBMS -> Model : generate unique ID
+Controller -> trainer : "Location: $url""
+
+else errors
+
+DBMS-> Model : error
+Model --> Controller : error array
+Controller-> View : createQuizView.php
+View -> trainer : return submitted data for creating new Quiz with errors
+end

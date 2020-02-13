@@ -15,6 +15,7 @@ function display_error($key, $tag = "span") {
    <a href="./">Home</a>
    <a href="questions">Questions</a>
    <a href="quizzes">Quizzes</a>
+   <a href="signup"> SignUp</a>
    <a href="../docs/">Documentation</a>
    <?php
    if (isset($_SESSION["user"])) {

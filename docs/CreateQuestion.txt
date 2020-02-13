@@ -1,0 +1,38 @@
+@startuml
+title Create Question Sequence Diagram
+actor trainer
+participant View
+participant Controller
+participant Model
+database DBMS
+database TargetDBMS
+
+trainer -> Controller : GET createQuestion.php
+Controller -> Model : QuizDB::getAvailableDBs()
+Model -> DBMS : do SELECT db_name from quiz_db
+DBMS --> Model : return SELECT db_name results
+Model --> Controller : db_name results
+Controller -> Model : QuizDB::getThemes()
+Model -> DBMS : do SELECT * from theme
+DBMS --> Model : return SELECT theme results
+Model --> Controller : theme results
+Controller -> View : createQuestionView.php
+View --> trainer : return empty form to create new Question [with available dbs & themes]
+trainer -> Controller : POST createQuestion.php data[db_name,text, answer, is_public]
+alt AnswerCreation success
+Controller -> Model : DB::testAnswerQuery(db_name, answer)
+Model -> TargetDBMS : do answer on db_name (Query)
+TargetDBMS -> Model : return array
+Model --> Controller : return array results
+Controller -> Model : Question::insert(data, question_id)
+Model -> DBMS : do INSERT INTO sql_answer(answer_data)
+DBMS -> Model : generate unique ID
+Controller -> trainer : "Location: questionList.php"
+else errors
+
+DBMS-> Model : error
+Model --> Controller : error array
+Controller-> View : createQuestionView.php
+View -> trainer : return form with submitted data to create new Question [with available dbs & errors]
+end
+@enduml

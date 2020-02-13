@@ -6,7 +6,7 @@
 <html>
 
 <head>
-   <title>Search results</title>
+   <title>Questions</title>
    <script src="static/jquery-3.4.1.min.js"></script>
    <script src="static/jquery-ui.min.js"></script>
    <style>
@@ -46,12 +46,14 @@
          <input type="submit" value="filter">
       </form>
       <table>
+         <thead>
          <tr>
             <th>Question ID</th>
             <th>Question Text</th>
             <th>Theme</th>
             <th>Quiz Occurrences</th>
          </tr>
+         </thead>
          <tbody id="justmovable">
             <?php
             for ($i = 0; $i < count($questions); $i++) {
@@ -96,7 +98,6 @@
             $(".item_row").hover(
                function() {
                   t = $(this).find("td:eq(0)").text();
-                  console.log($('#' + t).text());
                   //$(this).append($("<span>"+t+"</span>"));
                   $('#' + t).show();
                },

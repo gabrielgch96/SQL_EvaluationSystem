@@ -4,14 +4,12 @@ participant View
 
 Browser -> Controller: GET questionList.php
 Controller -> Model: Questions::doGetQuestionList()
-Model -> DBMS: SELECT * FROM question
+Model -> DBMS: SELECT * FROM question WHERE question_id = question_id
 
 alt success
 DBMS -> Model: get question list
 Model -> Controller: "Questions"
-Controller -> View: questionList_v.php
-View -> Browser: "Location: questionList"
-Browser -> Controller: GET questions
+Controller -> Browser: questionList_v.php
 
 else insertion error
 DBMS -> Model: MySql error code\nthrough an exception

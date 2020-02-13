@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <title>Search results</title>
+      <title>Quizzes</title>
    </head>
    <body>
       <?php
@@ -38,7 +38,7 @@
                <tr>
                   <td><a href="runQuiz_View-<?= $quiz["quiz_id"] ?>"><?= $quiz["quiz_id"] ?></a></td>
                   <td><?= $quiz["title"] ?></td>
-                  <td><?= $quiz["is_public"] ?></td>
+                  <td><?= $quiz["is_public"]==true?"yes":"no" ?></td>
                   <td><?= $quiz["author_id"]?></td>
                   <td><?= $quiz["db_name"] ?></td>
                </tr>

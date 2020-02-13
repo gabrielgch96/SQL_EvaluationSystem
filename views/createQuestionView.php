@@ -37,7 +37,7 @@ if (!isset($question)) {
         <label>Correct Answer:</label>
         <input type="text" name="correct_answer" id="correct_answer" value="<?= $question["correct_answer"] ?>">
         <label>Public?</label>
-        <input type="checkbox" name="is_public" <?= $question["is_public"]?"checked":"" ?>>
+        <input type="checkbox" name="is_public" <?= $question["is_public"]?"checked":"" ?>
         <label>Theme</label>
         <select form="questionForm" name="theme_id">
             <?php
