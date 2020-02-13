@@ -1,10 +1,9 @@
 <?php
-
-
-
 Session_start();
 $_SESSION["page"] = $_SERVER["REQUEST_URI"];
-
+if (!isset($_SESSION["user"])) {
+    require_once("../views/loginMessage.php");
+} else{
    switch ($_SERVER["REQUEST_METHOD"])
    {
 
@@ -52,7 +51,7 @@ $_SESSION["page"] = $_SERVER["REQUEST_URI"];
         }
 
 
-   }
+   }}
    
  /** test user sql
     * @param $sql_test SELECT to run
@@ -77,6 +76,3 @@ function formatToCSV($results){
     }
     return implode("\n", $formatted);
 }
-     
-
-    ?>

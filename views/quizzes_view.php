@@ -31,16 +31,18 @@
                <th>Is_public</th>
                <th>author_id</th>
                <th>db_name</th>
+               <th>run</th>
             </tr>
             <?php
             foreach ($quizzes as $quiz) {
                ?>
                <tr>
-                  <td><a href="runQuiz_View-<?= $quiz["quiz_id"] ?>"><?= $quiz["quiz_id"] ?></a></td>
+                  <td><a href="quiz-<?= $quiz["quiz_id"] ?>"><?= $quiz["quiz_id"] ?></a></td>
                   <td><?= $quiz["title"] ?></td>
                   <td><?= $quiz["is_public"]==true?"yes":"no" ?></td>
                   <td><?= $quiz["author_id"]?></td>
                   <td><?= $quiz["db_name"] ?></td>
+                  <td><a href="runQuiz_View-<?= $quiz["quiz_id"] ?>"><?= $quiz["quiz_id"] ?></a></td>
                </tr>
                <?php
             }

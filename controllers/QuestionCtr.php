@@ -2,6 +2,9 @@
 /* Controller for modification of question */
 session_start();
 require_once("../model/Theme.php");
+if (!isset($_SESSION["user"])) {
+    require_once("../views/loginMessage.php");
+} else{
 $themes = Theme::getAll();
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     // the question
@@ -65,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     }
 } else
     die("Method Not Implemented");
-
+}
 /** test user sql
     * @param $sql_test SELECT to run
     * @param $db_name target database 

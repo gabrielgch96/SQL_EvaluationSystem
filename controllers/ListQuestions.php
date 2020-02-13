@@ -2,6 +2,9 @@
 session_start();
 require_once("../model/SQLQuestion.php");
 require_once("../model/Quiz_DB.php");
+if (!isset($_SESSION["user"])) {
+    require_once("../views/loginMessage.php");
+} else{
 $questions = array();
 $dbs = array();
 $dbs = Quiz_DB::searchAll();
@@ -21,5 +24,5 @@ switch($_SERVER["REQUEST_METHOD"]){
         break;
     default:
         die("Method Not Implemented");
-}
+}}
 ?>

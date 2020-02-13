@@ -1,6 +1,9 @@
 <?php
 session_start();
 require_once("../model/SQLQuiz.php");
+if (!isset($_SESSION["user"])) {
+    require_once("../views/loginMessage.php");
+} else{
 $target_dbs = SQLQuiz::search();
 switch($_SERVER["REQUEST_METHOD"]){
     case "GET":
@@ -21,5 +24,5 @@ switch($_SERVER["REQUEST_METHOD"]){
         break;
     default:
         die("Method Not Implemented");
-}
+}}
 ?>

@@ -2,6 +2,9 @@
 
 /** Controller for quiz modification */
 session_start();
+if (!isset($_SESSION["user"])) {
+    require_once("../views/loginMessage.php");
+} else{
 require_once("../model/SQLQuiz.php");
 require_once("../model/QuizQuestion.php");
 $target_dbs = SQLQuiz::search();
@@ -66,3 +69,4 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 } else
     die("Method Not Implemented");
+}
