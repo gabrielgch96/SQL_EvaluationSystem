@@ -2,21 +2,19 @@
 participant Browser
 participant View
 
-Browser -> Controller: GET quizList.php
-Controller -> Model: doGetQuizList()
-Model -> DBMS: SELECT * FROM quiz
+Browser -> Controller: GET questions.php
+Controller -> Model: Questions::getByFilter()
+Model -> DBMS: SELECT * FROM question WHERE question_id = question_id
 
 alt success
-DBMS -> Model: GET quiz list
-Model -> Controller: "QuizList"
-Controller -> View: quizList_v.php
-View -> Browser: "Location: quizList"
-Browser -> Controller: GET Quizs
+DBMS -> Model: get question list
+Model -> Controller: "Questions"
+Controller -> Browser: question_view.php
 
 else insertion error
 DBMS -> Model: MySql error code\nthrough an exception
 Model -> Controller: PDOException
-Controller -> View: quizList_v.php\nwith the error msg
+Controller -> View: question_view.php\nwith the error msg
 View -> Browser: form with an error message
 end
 @enduml
