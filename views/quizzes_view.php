@@ -36,7 +36,7 @@
             foreach ($quizzes as $quiz) {
                ?>
                <tr>
-                  <td><a href="quiz-<?= $quiz['quiz_id'] ?>"><?= $quiz["quiz_id"] ?></a></td>
+                  <td><a href="runQuiz_View-<?= $quiz["quiz_id"] ?>"><?= $quiz["quiz_id"] ?></a></td>
                   <td><?= $quiz["title"] ?></td>
                   <td><?= $quiz["is_public"] ?></td>
                   <td><?= $quiz["author_id"]?></td>

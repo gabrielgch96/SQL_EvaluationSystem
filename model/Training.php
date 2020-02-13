@@ -55,7 +55,17 @@ class Training{
         return $results;
     }
 
-    public static function search(){
+    public static function search($trainee_id,$quiz_id){
+        
+
+        $sql ="SELECT * from training
+              WHERE  quiz_id = :quiz_id ";
+              $data = array(
+                ":training_id"=>$training_id,
+                ":ended_at" => $ended_at);
+                $results = DB::execute($sql, $data);
+                return $results;
+
 
     }
 

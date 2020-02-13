@@ -125,6 +125,14 @@ class MySqlDB {
     $stmt->execute();
     return $stmt->rowCount();
   }
+
+  public static function executeQuery($sql, $dbName = null) {
+    $name = (get_called_class())::getFixedDbName($dbName);
+    $db = (get_called_class())::getConnection($name);
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
   
 
   /** Returns $dbName fixed: if null, set it to the static value DB_NAME, to

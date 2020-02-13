@@ -76,6 +76,41 @@ class Quiz_DB{
         }
         return $results;
     }
+    public static function getQuestionsForQuiz($quiz_id)
+
+    {
+        $sql= " SELECT squestion.question_text from  sql_quiz as squiz inner join sql_quiz_question as squizquestion 
+        on squiz.quiz_id = squizquestion.quiz_id 
+        inner join sql_question as squestion on squizquestion.question_id = squestion.question_id
+        where squiz.quiz_id = :quiz_id";
+
+        $data = array(":quiz_id"=>$quiz_id);
+
+        $results = DB::getAll($sql, $data);
+
+
+        return $results;
+
+    }
+
+    function test(){
+        echo "testing agian";
+    }
+
+
+    public static function checkQuery($queries)
+    {
+        $result= null;
+         try{
+             $result = DB::executeQuery($queries);
+             return $result;
+         }
+         catch (Exception $e) {
+            return  $result;
+        }
+
+        
+    }
 
 }
 ?>

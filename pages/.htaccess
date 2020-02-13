@@ -14,3 +14,6 @@ RewriteRule ^questions$ questions.php
 RewriteRule ^question-(\d+)$ question.php?id=$1
 RewriteRule ^quizs$ quizs.php
 RewriteRule ^quiz-(\d+)$ quiz.php?id=$1
+RewriteRule ^runQuiz_View$  run_quiz.php
+
+
