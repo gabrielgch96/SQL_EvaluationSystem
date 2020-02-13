@@ -5,7 +5,6 @@ participant View
 participant Controller
 participant Model
 participant DBMS
-participant TargetDBMS
 
 trainer -> Controller : GET CreateQuizCtr.php
 Controller -> View : createQuizView.php

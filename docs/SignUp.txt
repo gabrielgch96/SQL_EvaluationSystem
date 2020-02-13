@@ -1,0 +1,23 @@
+
+participant User
+participant View
+participant Controller
+participant Model
+participant DBMS
+participant "SMTP\nserver" as SMTP_server 
+
+User -> Controller : GET signup
+Controller -> View : sign_up.php
+View -> User : signup form
+User -> Controller : POST signup
+Controller -> Controller : Generate a random token
+Controller -> Model : Member::insert(..., token, ...)
+Model -> DBMS : INSERT INTO member(...)
+Controller -> SMTP_server : send mail with a form\nto confirmSignup with token=theToken
+Controller -> View : SignUp.php
+View -> User : "An email has been sent to you.\nPlease click on the link to confirm your inscription"
+
+User -> Controller : POST confirmSignup\nwith token=theToken
+Controller -> Model : Member::confirm(theToken)
+Controller -> View : signupConfirmed.php
+View -> User : "Your inscription is confirmed"
