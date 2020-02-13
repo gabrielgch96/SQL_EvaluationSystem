@@ -17,6 +17,3 @@ RewriteRule ^sign_out$ login.php?action=disconnect
 RewriteRule ^questions$ ListQuestions.php
 RewriteRule ^question-(\d+)$ QuestionCtr.php?id=$1
 RewriteRule ^quizzes$ ListQuizzes.php
-RewriteRule ^quiz-(\d+)$ QuizCtr.php?id=$1
-RewriteRule ^question$ QuestionCtr.php
-RewriteRule ^quiz$ QuizCtr.php
